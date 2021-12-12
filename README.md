@@ -1,5 +1,5 @@
 # evil-rmi-server
-An evil RMI server that can launch an arbitrary command. May be useful for CVE-2021-44228
+An evil RMI server that can launch an arbitrary command. May be useful for CVE-2021-44228 in a local privesc scenario
 
 ## Build
 
