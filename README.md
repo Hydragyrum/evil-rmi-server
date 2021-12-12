@@ -1,6 +1,12 @@
 # evil-rmi-server
 An evil RMI server that can launch an arbitrary command. May be useful for CVE-2021-44228
 
+## Build
+
+`./gradlew bootJar`
+
+## Run
+
 ```
 Usage: java -jar build/libs/evilRMIServer-1.0-SNAPSHOT.jar [-hV] [-p=<port>]
        <cmd>
