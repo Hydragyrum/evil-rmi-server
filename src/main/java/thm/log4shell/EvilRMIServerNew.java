@@ -13,14 +13,14 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-@Command(name = "evilrmi", mixinStandardHelpOptions = true, version = "v1.0",
+@Command(name = "java -jar build/libs/evilRMIServer-1.0-SNAPSHOT.jar", mixinStandardHelpOptions = true, version = "v1.0",
         description = "An evil RMI Server to help construct and run an arbitrary command.")
 public class EvilRMIServerNew implements Runnable {
 
-    @Option(names = {"-p", "--port", }, description = "The port to listen on")
+    @Option(names = {"-p", "--port",}, description = "The port to listen on")
     private int port = 1097;
 
-    @Parameters(index = "0", description = "The Command to run. Wrap in quotes if there are spaces.")
+    @Parameters(arity = "1", description = "The Command to run. Wrap in quotes if there are spaces.")
     private String cmd;
 
     @Override
@@ -44,7 +44,6 @@ public class EvilRMIServerNew implements Runnable {
     }
 
     public static void main(String[] args) throws Exception {
-        EvilRMIServerNew server = CommandLine.populateCommand(new EvilRMIServerNew(), args);
-        server.run();
+        new CommandLine(new EvilRMIServerNew()).execute(args);
     }
 }
